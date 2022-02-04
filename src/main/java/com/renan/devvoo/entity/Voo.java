@@ -12,6 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Entity
 @Table(name = "tb_voo")
@@ -21,18 +26,25 @@ public class Voo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private Instant exitTime;
+	@NotNull(message = "Informe a data e hora de partida do voo")
+	private Instant timeToGo;
 
+	@NotNull(message = "Informe a data e hora de chegada do voo")
 	private Instant arrivalTime;
 
+	@NotBlank(message = "Informe o aeroporto de origem")
 	private String airportOfOrigin;
 
+	@NotBlank(message = "Informe o aeroporto de destino")
 	private String destinationAirport;
 
+	@Min(value = 2, message = "O voo deve ter no mínimo 2 assentos")
 	private int numberOfSeats;
 
+	@Positive(message = "Preço deve ser um valor positivo")
 	private double price;
 	
+	@NotEmpty(message = "Informe os assentos do voo")
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "voo_id", referencedColumnName = "id")
 	private List<FlightSeat> seats = new ArrayList<>();
@@ -40,11 +52,11 @@ public class Voo {
 	public Voo() {
 	}
 
-	public Voo(Long id, Instant exitTime, Instant arrivalTime, String airportOfOrigin, String destinationAirport,
+	public Voo(Long id, Instant timeToGo, Instant arrivalTime, String airportOfOrigin, String destinationAirport,
 			int numberOfSeats, double price, List<FlightSeat> seats) {
 		super();
 		this.id = id;
-		this.exitTime = exitTime;
+		this.timeToGo = timeToGo;
 		this.arrivalTime = arrivalTime;
 		this.airportOfOrigin = airportOfOrigin;
 		this.destinationAirport = destinationAirport;
@@ -61,12 +73,12 @@ public class Voo {
 		this.id = id;
 	}
 
-	public Instant getExitTime() {
-		return exitTime;
+	public Instant getTimeToGo() {
+		return timeToGo;
 	}
 
-	public void setExitTime(Instant exitTime) {
-		this.exitTime = exitTime;
+	public void setTimeToGo(Instant timeToGo) {
+		this.timeToGo = timeToGo;
 	}
 
 	public Instant getArrivalTime() {

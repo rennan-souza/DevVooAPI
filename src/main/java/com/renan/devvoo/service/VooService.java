@@ -20,4 +20,7 @@ public class VooService {
 		return vooRepository.findByFlightSeatAvailable();
 	}
 
+	public Voo save(Voo voo) {
+		return vooRepository.save(voo);
+	}
 }
