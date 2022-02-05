@@ -20,6 +20,7 @@ public class VooService {
 		return vooRepository.findByFlightSeatAvailable();
 	}
 
+	@Transactional(readOnly = false)
 	public Voo save(Voo voo) {
 		return vooRepository.save(voo);
 	}
