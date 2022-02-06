@@ -1,5 +1,6 @@
 package com.renan.devvoo.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -61,5 +62,10 @@ public class AirfareService {
 		Optional<Airfare> obj = airfareRepository.findById(id);
 		Airfare airfare = obj.orElseThrow(() -> new ResourceNotFoundException("Passagem aérea não encontrada"));
 		return new AirfareDetailsWithVooDTO(airfare);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Optional<AirfareDetailsWithVooDTO>> findAirfareByCustomer(Long id) {
+		return airfareRepository.findAirfareByCustomer(id);
 	}
 }

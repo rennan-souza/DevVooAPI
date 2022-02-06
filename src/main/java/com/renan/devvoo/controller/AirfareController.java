@@ -1,6 +1,8 @@
 package com.renan.devvoo.controller;
 
 import java.net.URI;
+import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -40,6 +42,13 @@ public class AirfareController {
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<AirfareDetailsWithVooDTO> findById(@PathVariable Long id) {
 		AirfareDetailsWithVooDTO airfare = airfareService.findById(id);
+		return ResponseEntity.ok().body(airfare);
+	}
+	
+	@GetMapping(value = "/customer/{id}")
+	public ResponseEntity<List<Optional<AirfareDetailsWithVooDTO>>> findAirfareByCustomer(@PathVariable Long id) {
+		System.out.println("CLIENTE ID: "+ id);
+		List<Optional<AirfareDetailsWithVooDTO>> airfare = airfareService.findAirfareByCustomer(id);
 		return ResponseEntity.ok().body(airfare);
 	}
 }

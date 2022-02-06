@@ -14,12 +14,14 @@ public class AirfareDetailsWithVooDTO {
 	private String destinationAirport;
 	private String seat;
 	private double price;
+	private Instant purchaseDate;
+	private String purchaseCode;
 
 	public AirfareDetailsWithVooDTO() {
 	}
 
-	public AirfareDetailsWithVooDTO(Long id, Long voo_id, Instant timeToGo, Instant arrivalTime, 
-			String airportOfOrigin, String destinationAirport, String seat, double price) {
+	public AirfareDetailsWithVooDTO(Long id, Long voo_id, Instant timeToGo, Instant arrivalTime, String airportOfOrigin,
+			String destinationAirport, String seat, double price, Instant purchaseDate, String purchaseCode) {
 		super();
 		this.id = id;
 		this.voo_id = voo_id;
@@ -29,6 +31,8 @@ public class AirfareDetailsWithVooDTO {
 		this.destinationAirport = destinationAirport;
 		this.seat = seat;
 		this.price = price;
+		this.purchaseDate = purchaseDate;
+		this.purchaseCode = purchaseCode;
 	}
 
 	public AirfareDetailsWithVooDTO(Airfare entity) {
@@ -40,6 +44,8 @@ public class AirfareDetailsWithVooDTO {
 		destinationAirport = entity.getVoo().getDestinationAirport();
 		seat = entity.getFlightSea().getName();
 		price = entity.getVoo().getPrice();
+		purchaseDate = entity.getPurchaseDate();
+		purchaseCode = entity.getPurchaseCode();
 	}
 
 	public Long getId() {
@@ -104,5 +110,21 @@ public class AirfareDetailsWithVooDTO {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public Instant getPurchaseDate() {
+		return purchaseDate;
+	}
+
+	public void setPurchaseDate(Instant purchaseDate) {
+		this.purchaseDate = purchaseDate;
+	}
+
+	public String getPurchaseCode() {
+		return purchaseCode;
+	}
+
+	public void setPurchaseCode(String purchaseCode) {
+		this.purchaseCode = purchaseCode;
 	}
 }
