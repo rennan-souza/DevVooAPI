@@ -64,10 +64,10 @@ CREATE DATABASE db_dev_voo;
 
 ```json
 {
-	"timeToGo": "2022-02-04T11:25:30.00Z",
-	"arrivalTime": "2022-02-04T15:30:00.00Z",
-	"airportOfOrigin": "TESTE",
-	"destinationAirport": "TESTE",
+    "timeToGo": "2022-02-04T11:25:30.00Z",
+    "arrivalTime": "2022-02-04T15:30:00.00Z",
+    "airportOfOrigin": "TESTE",
+    "destinationAirport": "TESTE",
     "numberOfSeats": 2,
     "price": 359.99,
     "seats": [
@@ -98,9 +98,9 @@ CREATE DATABASE db_dev_voo;
 
 <br />
 
-# Adicioando passagem aérea
+# Adicioando compra de passagem aérea
 
-7 - Para adicionar uma passagem aérea basta enviar uma requisição POST para url: http://localhost:8080/airline-tickets
+7 - Para adicionar a compra de uma passagem aérea basta enviar uma requisição POST para url: http://localhost:8080/airline-tickets
 * No corpo da requisição você deve enviar o conteúdo no formato JSON, segue o exemplo:
 
 ```json
