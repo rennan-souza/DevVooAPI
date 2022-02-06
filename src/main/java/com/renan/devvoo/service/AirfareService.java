@@ -44,7 +44,6 @@ public class AirfareService {
 			throw new BadRequestException("O assento escolhido não está disponível");
 		}
 		
-		
 		String code = RandomStringUtils.randomNumeric(10);
 		
 		airfare.setPurchaseCode(code);
@@ -65,7 +64,12 @@ public class AirfareService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<Optional<AirfareDetailsWithVooDTO>> findAirfareByCustomer(Long id) {
+	public List<AirfareDetailsWithVooDTO> findAirfareByCustomer(Long id) {
 		return airfareRepository.findAirfareByCustomer(id);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<AirfareDetailsWithVooDTO> findAirfareByVoo(Long id) {
+		return airfareRepository.findAirfareByVoo(id);
 	}
 }

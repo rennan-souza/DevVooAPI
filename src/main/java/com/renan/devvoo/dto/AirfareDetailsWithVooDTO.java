@@ -7,43 +7,53 @@ import com.renan.devvoo.entity.Airfare;
 public class AirfareDetailsWithVooDTO {
 
 	private Long id;
-	private Long voo_id;
-	private Instant timeToGo;
-	private Instant arrivalTime;
-	private String airportOfOrigin;
-	private String destinationAirport;
-	private String seat;
-	private double price;
+	private Long customerId;
+	private String customerName;
+	private String customerCpf;
+	private Long vooId;
+	private Instant vooTimeToGo;
+	private Instant vooArrivalTime;
+	private String vooAirportOfOrigin;
+	private String vooDestinationAirport;
+	private String vooSeat;
+	private double airfarePrice;
 	private Instant purchaseDate;
 	private String purchaseCode;
 
 	public AirfareDetailsWithVooDTO() {
 	}
 
-	public AirfareDetailsWithVooDTO(Long id, Long voo_id, Instant timeToGo, Instant arrivalTime, String airportOfOrigin,
-			String destinationAirport, String seat, double price, Instant purchaseDate, String purchaseCode) {
+	public AirfareDetailsWithVooDTO(Long id, Long customerId, String customerName, String customerCpf, Long vooId,
+			Instant vooTimeToGo, Instant vooArrivalTime, String vooAirportOfOrigin, String vooDestinationAirport,
+			String vooSeat, double airfarePrice, Instant purchaseDate, String purchaseCode) {
 		super();
 		this.id = id;
-		this.voo_id = voo_id;
-		this.timeToGo = timeToGo;
-		this.arrivalTime = arrivalTime;
-		this.airportOfOrigin = airportOfOrigin;
-		this.destinationAirport = destinationAirport;
-		this.seat = seat;
-		this.price = price;
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.customerCpf = customerCpf;
+		this.vooId = vooId;
+		this.vooTimeToGo = vooTimeToGo;
+		this.vooArrivalTime = vooArrivalTime;
+		this.vooAirportOfOrigin = vooAirportOfOrigin;
+		this.vooDestinationAirport = vooDestinationAirport;
+		this.vooSeat = vooSeat;
+		this.airfarePrice = airfarePrice;
 		this.purchaseDate = purchaseDate;
 		this.purchaseCode = purchaseCode;
 	}
 
 	public AirfareDetailsWithVooDTO(Airfare entity) {
 		id = entity.getId();
-		voo_id = entity.getVoo().getId();
-		timeToGo = entity.getVoo().getTimeToGo();
-		arrivalTime = entity.getVoo().getArrivalTime();
-		airportOfOrigin = entity.getVoo().getAirportOfOrigin();
-		destinationAirport = entity.getVoo().getDestinationAirport();
-		seat = entity.getFlightSea().getName();
-		price = entity.getVoo().getPrice();
+		vooId = entity.getVoo().getId();
+		customerId = entity.getCustomer().getId();
+		customerName = entity.getCustomer().getFullName();
+		customerCpf = entity.getCustomer().getCpf();
+		vooTimeToGo = entity.getVoo().getTimeToGo();
+		vooArrivalTime = entity.getVoo().getArrivalTime();
+		vooAirportOfOrigin = entity.getVoo().getAirportOfOrigin();
+		vooDestinationAirport = entity.getVoo().getDestinationAirport();
+		vooSeat = entity.getFlightSea().getName();
+		airfarePrice = entity.getVoo().getPrice();
 		purchaseDate = entity.getPurchaseDate();
 		purchaseCode = entity.getPurchaseCode();
 	}
@@ -56,60 +66,84 @@ public class AirfareDetailsWithVooDTO {
 		this.id = id;
 	}
 
-	public Long getVoo_id() {
-		return voo_id;
+	public Long getCustomerId() {
+		return customerId;
 	}
 
-	public void setVoo_id(Long voo_id) {
-		this.voo_id = voo_id;
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 
-	public Instant getTimeToGo() {
-		return timeToGo;
+	public String getCustomerName() {
+		return customerName;
 	}
 
-	public void setTimeToGo(Instant timeToGo) {
-		this.timeToGo = timeToGo;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
-	public Instant getArrivalTime() {
-		return arrivalTime;
+	public String getCustomerCpf() {
+		return customerCpf;
 	}
 
-	public void setArrivalTime(Instant arrivalTime) {
-		this.arrivalTime = arrivalTime;
+	public void setCustomerCpf(String customerCpf) {
+		this.customerCpf = customerCpf;
 	}
 
-	public String getAirportOfOrigin() {
-		return airportOfOrigin;
+	public Long getVooId() {
+		return vooId;
 	}
 
-	public void setAirportOfOrigin(String airportOfOrigin) {
-		this.airportOfOrigin = airportOfOrigin;
+	public void setVooId(Long vooId) {
+		this.vooId = vooId;
 	}
 
-	public String getDestinationAirport() {
-		return destinationAirport;
+	public Instant getVooTimeToGo() {
+		return vooTimeToGo;
 	}
 
-	public void setDestinationAirport(String destinationAirport) {
-		this.destinationAirport = destinationAirport;
+	public void setVooTimeToGo(Instant vooTimeToGo) {
+		this.vooTimeToGo = vooTimeToGo;
 	}
 
-	public String getSeat() {
-		return seat;
+	public Instant getVooArrivalTime() {
+		return vooArrivalTime;
 	}
 
-	public void setSeat(String seat) {
-		this.seat = seat;
+	public void setVooArrivalTime(Instant vooArrivalTime) {
+		this.vooArrivalTime = vooArrivalTime;
 	}
 
-	public double getPrice() {
-		return price;
+	public String getVooAirportOfOrigin() {
+		return vooAirportOfOrigin;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
+	public void setVooAirportOfOrigin(String vooAirportOfOrigin) {
+		this.vooAirportOfOrigin = vooAirportOfOrigin;
+	}
+
+	public String getVooDestinationAirport() {
+		return vooDestinationAirport;
+	}
+
+	public void setVooDestinationAirport(String vooDestinationAirport) {
+		this.vooDestinationAirport = vooDestinationAirport;
+	}
+
+	public String getVooSeat() {
+		return vooSeat;
+	}
+
+	public void setVooSeat(String vooSeat) {
+		this.vooSeat = vooSeat;
+	}
+
+	public double getAirfarePrice() {
+		return airfarePrice;
+	}
+
+	public void setAirfarePrice(double airfarePrice) {
+		this.airfarePrice = airfarePrice;
 	}
 
 	public Instant getPurchaseDate() {
