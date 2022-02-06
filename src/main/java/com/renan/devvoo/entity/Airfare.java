@@ -2,10 +2,13 @@ package com.renan.devvoo.entity;
 
 import java.time.Instant;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -19,26 +22,36 @@ public class Airfare {
 	private Long id;
 
 	@NotNull(message = "Informe o voo")
-	private Long vooId;
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "voo_id", referencedColumnName = "id")
+	private Voo voo;
 
 	@NotNull(message = "Informe o assento")
-	private Long flightSeatId;
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "flight_seat_id", referencedColumnName = "id")
+	private FlightSeat flightSea;
 
 	@NotNull(message = "Informe o cliente")
-	private Long customerId;
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "customer_id", referencedColumnName = "id")
+	private Customer customer;
 
 	private Instant purchaseDate;
 
+	private String purchaseCode;
+
 	public Airfare() {
 	}
-	
-	public Airfare(Long id, Long vooId, Long flightSeatId, Long customerId, Instant purchaseDate) {
+
+	public Airfare(Long id, Voo voo, FlightSeat flightSea, Customer customer, Instant purchaseDate, 
+			String purchaseCode) {
 		super();
 		this.id = id;
-		this.vooId = vooId;
-		this.flightSeatId = flightSeatId;
-		this.customerId = customerId;
+		this.voo = voo;
+		this.flightSea = flightSea;
+		this.customer = customer;
 		this.purchaseDate = purchaseDate;
+		this.purchaseCode = purchaseCode;
 	}
 
 	public Long getId() {
@@ -49,28 +62,28 @@ public class Airfare {
 		this.id = id;
 	}
 
-	public Long getVooId() {
-		return vooId;
+	public Voo getVoo() {
+		return voo;
 	}
 
-	public void setVooId(Long vooId) {
-		this.vooId = vooId;
+	public void setVoo(Voo voo) {
+		this.voo = voo;
 	}
 
-	public Long getFlightSeatId() {
-		return flightSeatId;
+	public FlightSeat getFlightSea() {
+		return flightSea;
 	}
 
-	public void setFlightSeatId(Long flightSeatId) {
-		this.flightSeatId = flightSeatId;
+	public void setFlightSea(FlightSeat flightSea) {
+		this.flightSea = flightSea;
 	}
 
-	public Long getCustomerId() {
-		return customerId;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setCustomerId(Long customerId) {
-		this.customerId = customerId;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public Instant getPurchaseDate() {
@@ -79,6 +92,14 @@ public class Airfare {
 
 	public void setPurchaseDate(Instant purchaseDate) {
 		this.purchaseDate = purchaseDate;
+	}
+	
+	public String getPurchaseCode() {
+		return purchaseCode;
+	}
+
+	public void setPurchaseCode(String code) {
+		this.purchaseCode = code;
 	}
 
 	@PrePersist
